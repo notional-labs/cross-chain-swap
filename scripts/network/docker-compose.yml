@@ -1,0 +1,27 @@
+version: '3'
+services:
+  juno:
+    container_name: juno
+    image: swap:juno
+    volumes:
+      - ./config/juno:/home/juno/.juno
+    ports:
+      - "26657:26657"
+      - "1317:1317"
+      - "9090:9090"
+  osmosis:
+    container_name: osmosis
+    image: swap:osmosis
+    volumes:
+      - ./config/osmosis:/home/osmosis/.osmosisd
+    ports:
+      - "26357:26657"
+      - "1287:1317"
+      - "9060:9090"
+  sc-relayer:
+    container_name: sc-relayer
+    image: swap:relayer
+    volumes:
+      - ./config/relayer-sc-config:/home/relayer/.relayer
+    restart: always
+    command: [ "bash", "start.sh", "sc_juno-osmosis" ]

@@ -1,0 +1,43 @@
+global:
+  api-listen-addr: :5183
+  timeout: 10s
+  memo: ""
+  light-cache-size: 20
+chains:
+  juno:
+    type: cosmos
+    value:
+      key: rly-juno
+      chain-id: test-juno
+      rpc-addr: http://juno:26657
+      account-prefix: juno
+      keyring-backend: test
+      gas-adjustment: 1.2
+      gas-prices: 0.01ujuno
+      debug: false
+      timeout: 20s
+      output-format: json
+      sign-mode: direct
+  osmosis:
+    type: cosmos
+    value:
+      key: rly-osmo
+      chain-id: test-osmo
+      rpc-addr: http://osmosis:26657
+      account-prefix: osmo
+      keyring-backend: test
+      gas-adjustment: 1.2
+      gas-prices: 0.01uosmo
+      debug: false
+      timeout: 20s
+      output-format: json
+      sign-mode: direct
+paths:
+  sc_juno-osmosis:
+    src:
+      chain-id: test-juno
+    dst:
+      chain-id: test-osmo
+    src-channel-filter:
+      rule: ""
+      channel-list: []
